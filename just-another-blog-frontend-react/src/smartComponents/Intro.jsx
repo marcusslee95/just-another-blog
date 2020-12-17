@@ -1,8 +1,8 @@
-import Intro from './Intro.module.css';
+import intro from './Intro.module.css';
 
-const intro = () => {
+const Intro = () => {
     return (
-    <div className={Intro.AppliesToWholeComponent}>
+    <div className={intro.AppliesToWholeComponent}>
         Hi there Stranger! <br/>
         Congrats on being the <b>369th</b> unique visit to this website! <br/><br/>
         Keep pumping those numbers up as you engage with the content 
@@ -13,4 +13,4 @@ const intro = () => {
     );
   }
   
-  export default intro;
+  export default Intro;

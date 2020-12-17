@@ -1,12 +1,13 @@
+import Layout from "./dumbComponents/Layout";
+import Logo from "./dumbComponents/Logo";
 import Intro from "./smartComponents/Intro";
-
 
 function App() {
   return (
-    <Intro/>
-    // <div className="App">
-    //   Hi there!
-    // </div>
+    <Layout>
+      <Logo/>
+      <Intro/>
+    </Layout>
   );
 }
 
