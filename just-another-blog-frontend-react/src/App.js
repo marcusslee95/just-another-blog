@@ -1,10 +1,12 @@
+import Intro from "./smartComponents/Intro";
 
 
 function App() {
   return (
-    <div className="App">
-      Hi there!
-    </div>
+    <Intro/>
+    // <div className="App">
+    //   Hi there!
+    // </div>
   );
 }
 
