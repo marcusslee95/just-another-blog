@@ -1,8 +1,11 @@
-import cssClass from './Intro.module.css';
-
 const Intro = () => {
     return (
-    <div className={cssClass.AppliesToWholeComponent}>
+    <div 
+    style=
+        {{
+            textAlign: "center"
+        }}
+    >
         Hi there Stranger! <br/>
         Congrats on being the <b>369th</b> unique visit to this website! <br/><br/>
         Keep pumping those numbers up as you engage with the content 

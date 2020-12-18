@@ -6,6 +6,8 @@ import {
   Route
 } from "react-router-dom";
 import SoftwareEngineering from "./smartComponents/SoftwareEngineering";
+import EverythingElse from "./smartComponents/EverythingElse";
+import UserWritingArticle from "./smartComponents/UserWritingArticle";
 
 function App() {
   return (
@@ -17,6 +19,12 @@ function App() {
           </Route>
           <Route path="/swe" exact>
             <SoftwareEngineering/>
+          </Route>
+          <Route path="/else…" exact>
+            <EverythingElse/>
+          </Route>
+          <Route path="/userWritingArticle" exact>
+            <UserWritingArticle/>
           </Route>
         </Switch>
       </Layout>

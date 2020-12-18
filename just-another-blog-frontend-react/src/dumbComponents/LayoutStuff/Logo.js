@@ -3,7 +3,6 @@ import cssClass from './Logo.module.css'
 
 const Logo = (props) => {
     return (
-        // <div className="Logo">
         <div className={cssClass.TheLogo}>
             JAB
         </div>
