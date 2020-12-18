@@ -1,10 +1,10 @@
 import React from 'react';
-import logo from './Logo.module.css'
+import cssClass from './Logo.module.css'
 
 const Logo = (props) => {
     return (
         // <div className="Logo">
-        <div className={logo.TheLogo}>
+        <div className={cssClass.TheLogo}>
             JAB
         </div>
     );
