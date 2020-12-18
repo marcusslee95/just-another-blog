@@ -5,9 +5,9 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import SoftwareEngineering from "./smartComponents/SoftwareEngineering";
-import EverythingElse from "./smartComponents/EverythingElse";
-import UserWritingArticle from "./smartComponents/UserWritingArticle";
+import SoftwareEngineering from "./smartComponents/SoftwareEngineering/SoftwareEngineering";
+import EverythingElse from "./smartComponents/EverythingElse/EverythingElse";
+import UserWritingArticle from "./smartComponents/UserWritingArticle/UserWritingArticle";
 
 function App() {
   return (
