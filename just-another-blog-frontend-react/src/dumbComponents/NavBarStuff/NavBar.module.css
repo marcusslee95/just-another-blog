@@ -1,23 +1,23 @@
-.AppliesToWholeComponent {
+.StuffToTurnTheListHorizontalAndGetRidOfTheListDot {
     list-style-type: none;
     margin: 0;
     padding: 0;
 }
 
-.DifferentPage {
+.NavBarItem {
     display: inline;
     padding-left: 40px;
     padding-right: 40px;
 }
 
-.DifferentPage a {
+.NavBarItem a {
     color: white;
 }
 
-.DifferentPage a:hover {
+.NavBarItem a:hover {
     color: #40A4C8;
 }
 
-.DifferentPage:hover{
+.NavBarItem:hover{
     background-color: black;
 }
