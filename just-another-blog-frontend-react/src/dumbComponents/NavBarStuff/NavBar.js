@@ -7,7 +7,8 @@ const NavBar = (props) => {
         <div
         style=
         {{
-            backgroundColor: "#703B09",
+            // backgroundColor: "#703B09",
+            backgroundImage: "linear-gradient(45deg, #01425c,   #60cdf7)",
             order: 2
         }}
         >
