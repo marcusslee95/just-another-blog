@@ -26,7 +26,8 @@ const NavBar = (props) => {
         style=
         {{
             // backgroundColor: "#703B09",
-            backgroundImage: "linear-gradient(45deg, #01425c,   #60cdf7)",
+            // backgroundImage: "linear-gradient(45deg, #01425c,   #60cdf7)",
+            backgroundImage: "linear-gradient(225deg, #0274a1,   #60cdf7)",
             order: 2
         }}
         >
@@ -39,7 +40,7 @@ const NavBar = (props) => {
                     >{textForFirstNavBarItem}</Link>
                 </li>
                 <li className={cssClass.NavBarItem}>
-                    <Link to="/else…"
+                    <Link to="/else"
                     onClick={() => setWhichNavItemHasBeenClicked("Everything else…")}
                     >{textForSecondNavBarItem}</Link>
                 </li>

@@ -3,6 +3,7 @@ const Intro = () => {
     <div 
     style=
         {{
+            color: 'white',
             textAlign: "center"
         }}
     >

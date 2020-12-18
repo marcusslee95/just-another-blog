@@ -6,11 +6,16 @@ class SoftwareEngineering extends Component {
 
     render () {
         return (
-        <div>
+        <div
+        style=
+            {{
+                color: 'white'
+            }}
+        >
             SoftwareEngineering Stuff
         </div>
         );
-        
+
     }
 
 }

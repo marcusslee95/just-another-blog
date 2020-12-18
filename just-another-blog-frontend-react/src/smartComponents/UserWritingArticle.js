@@ -6,7 +6,12 @@ class UserWritingArticle extends Component {
 
     render () {
         return (
-        <div>
+        <div
+        style=
+            {{
+                color: 'white'
+            }}
+        >
             UserWritingArticle Stuff
         </div>
         );

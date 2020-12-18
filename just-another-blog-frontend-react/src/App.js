@@ -20,7 +20,7 @@ function App() {
           <Route path="/swe" exact>
             <SoftwareEngineering/>
           </Route>
-          <Route path="/else…" exact>
+          <Route path="/else" exact>
             <EverythingElse/>
           </Route>
           <Route path="/userWritingArticle" exact>
