@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const SubmitForm = (props) => {
     const [UserWrittenArticle, setUserWrittenArticle] = useState("");
-
+    // const [testString, setTestString] = useState("testString");
     let submitText = (
         <h4>
             Upload the file of the article you wrote here and then click the submit button to submit it!
@@ -12,13 +12,19 @@ const SubmitForm = (props) => {
     );
 
     let uploadButton = (
-        <input type="file" name="filename"
+        <input type="file" name="avadakadabra"
         onChange={(e) => {
-            // alert("Mocking user uploading a file");
-            // console.log(e.target.files);
+            console.log(e.target.files);
+            console.log(e.target.files[0]);
             const uploadedFile = e.target.files[0];
             const data = new FormData();
-            data.append('file', uploadedFile);
+            data.append('article', uploadedFile);
+            // axios.post("http://localhost:4000/uploadFileAPI", data,  {headers: {
+            //           'Content-Type': 'multipart/form-data'
+            //         }})
+            // .then(res => { // then print response status
+            //     console.log(res.statusText)
+            // });
             setUserWrittenArticle(data);
         }}
         />
@@ -36,9 +42,10 @@ const SubmitForm = (props) => {
     let submitButton = (
         <button
         onClick={() => {
-            // alert("Mocking user sending article");
-            axios.post("http://localhost:4000/uploadFileAPI", UserWrittenArticle)
-            .then(res => { // then print response status
+            axios.post("http://localhost:4000/uploadFileAPI", UserWrittenArticle,  {headers: {
+                      'Content-Type': 'multipart/form-data'
+                    }})
+            .then(res => {
                 console.log(res.statusText)
             });
         }}
