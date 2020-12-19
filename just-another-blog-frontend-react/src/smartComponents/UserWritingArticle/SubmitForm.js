@@ -46,7 +46,8 @@ const SubmitForm = (props) => {
                       'Content-Type': 'multipart/form-data'
                     }})
             .then(res => {
-                console.log(res.statusText)
+                console.log(res);
+                if (res.status === 200) alert("Your article has successfully been sent! I'll enjoy reading it :-)")
             });
         }}
         >Submit</button>
