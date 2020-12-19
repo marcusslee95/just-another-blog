@@ -1,7 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 // import cssClass from './Logo.module.css'
+import axios from 'axios';
 
 const SubmitForm = (props) => {
+    const [UserWrittenArticle, setUserWrittenArticle] = useState("");
+
     let submitText = (
         <h4>
             Upload the file of the article you wrote here and then click the submit button to submit it!
@@ -9,11 +12,16 @@ const SubmitForm = (props) => {
     );
 
     let uploadButton = (
-        <button
-        onClick={() => {
-            alert("Mocking user uploading a file");
+        <input type="file" name="filename"
+        onChange={(e) => {
+            // alert("Mocking user uploading a file");
+            // console.log(e.target.files);
+            const uploadedFile = e.target.files[0];
+            const data = new FormData();
+            data.append('file', uploadedFile);
+            setUserWrittenArticle(data);
         }}
-        >Upload File</button>
+        />
     );
 
     let emptySpace = (
@@ -28,7 +36,11 @@ const SubmitForm = (props) => {
     let submitButton = (
         <button
         onClick={() => {
-            alert("Mocking user sending article");
+            // alert("Mocking user sending article");
+            axios.post("http://localhost:4000/uploadFileAPI", UserWrittenArticle)
+            .then(res => { // then print response status
+                console.log(res.statusText)
+            });
         }}
         >Submit</button>
     );
@@ -42,7 +54,7 @@ const SubmitForm = (props) => {
             textAlign: "center"
         }}
         >
-            {submitText}
+            {submitText}            
             {uploadButton}
             {emptySpace}
             {submitButton}
