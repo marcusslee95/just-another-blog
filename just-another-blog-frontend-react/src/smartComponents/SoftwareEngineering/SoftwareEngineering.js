@@ -1,7 +1,30 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class SoftwareEngineering extends Component {
     state = {
+        // SoftwareEngineeringArticles: []
+        SoftwareEngineeringArticles: null
+    }
+
+    componentDidMount () {
+        axios.get( 'http://localhost:4000/getSoftwareEngineeringArticles' )
+            .then( response => {
+                // const posts = response.data.slice(0, 4);
+                // const updatedPosts = posts.map(post => {
+                //     return {
+                //         ...post,
+                //         author: 'Max'
+                //     }
+                // });
+                // this.setState({posts: updatedPosts});
+                console.log( response.data );
+                this.setState({SoftwareEngineeringArticles: response.data});
+            } )
+            .catch(error => {
+                // console.log(error);
+                this.setState({error: true});
+            });
     }
 
     render () {
@@ -52,6 +75,7 @@ class SoftwareEngineering extends Component {
                 color: 'white'
             }}
         >
+            {this.state.SoftwareEngineeringArticles}
             {introText}
         </div>
         );
