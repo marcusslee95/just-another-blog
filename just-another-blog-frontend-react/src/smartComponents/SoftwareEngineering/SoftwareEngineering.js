@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import Parser from 'html-react-parser';
+
 
 class SoftwareEngineering extends Component {
     state = {
         // SoftwareEngineeringArticles: []
-        SoftwareEngineeringArticles: null
+        SoftwareEngineeringArticles: ""
     }
 
     componentDidMount () {
@@ -75,7 +77,8 @@ class SoftwareEngineering extends Component {
                 color: 'white'
             }}
         >
-            {this.state.SoftwareEngineeringArticles}
+            {/* {this.state.SoftwareEngineeringArticles} */}
+            {Parser(this.state.SoftwareEngineeringArticles)}
             {introText}
         </div>
         );
