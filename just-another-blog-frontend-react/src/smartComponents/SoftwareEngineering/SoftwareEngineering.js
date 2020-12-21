@@ -1,25 +1,16 @@
 import React, {Component} from 'react';
 import axios from 'axios';
-import Parser from 'html-react-parser';
 
 
 class SoftwareEngineering extends Component {
     state = {
-        // SoftwareEngineeringArticles: []
-        SoftwareEngineeringArticles: ""
+        SoftwareEngineeringArticles: []
+        // SoftwareEngineeringArticles: ""
     }
 
     componentDidMount () {
         axios.get( 'http://localhost:4000/getSoftwareEngineeringArticles' )
             .then( response => {
-                // const posts = response.data.slice(0, 4);
-                // const updatedPosts = posts.map(post => {
-                //     return {
-                //         ...post,
-                //         author: 'Max'
-                //     }
-                // });
-                // this.setState({posts: updatedPosts});
                 console.log( response.data );
                 this.setState({SoftwareEngineeringArticles: response.data});
             } )
@@ -70,6 +61,13 @@ class SoftwareEngineering extends Component {
             Hope you find something you like!
             </p>
         );
+
+        const copyOfSoftwareEngineeringArticles = [...this.state.SoftwareEngineeringArticles]
+        const sweArticlesAsHTMLElements = copyOfSoftwareEngineeringArticles.map(
+            article => {
+            return <div dangerouslySetInnerHTML={{ __html: article}} />
+        });
+
         return (
         <div
         style=
@@ -78,7 +76,10 @@ class SoftwareEngineering extends Component {
             }}
         >
             {/* {this.state.SoftwareEngineeringArticles} */}
-            {Parser(this.state.SoftwareEngineeringArticles)}
+            {/* <div dangerouslySetInnerHTML={{ __html: this.state.SoftwareEngineeringArticles[1]}} /> */}
+            {sweArticlesAsHTMLElements}
+            {/* {this.state.SoftwareEngineeringArticles[1]}
+            {this.state.SoftwareEngineeringArticles[0]} */}
             {introText}
         </div>
         );
