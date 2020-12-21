@@ -64,8 +64,8 @@ class SoftwareEngineering extends Component {
 
         const copyOfSoftwareEngineeringArticles = [...this.state.SoftwareEngineeringArticles]
         const sweArticlesAsHTMLElements = copyOfSoftwareEngineeringArticles.map(
-            article => {
-            return <div dangerouslySetInnerHTML={{ __html: article}} />
+            (article, i) => {
+            return <div key={i} dangerouslySetInnerHTML={{ __html: article}} />
         });
 
         return (
