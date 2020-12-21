@@ -77,7 +77,36 @@ class SoftwareEngineering extends Component {
         >
             {/* {this.state.SoftwareEngineeringArticles} */}
             {/* <div dangerouslySetInnerHTML={{ __html: this.state.SoftwareEngineeringArticles[1]}} /> */}
-            {sweArticlesAsHTMLElements}
+            <div name="articlesAndContentList"
+            style=
+            {{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "flex-start"
+            }}
+            >
+                <div name="articles"
+                style=
+                {{
+                    order: 1
+                }}
+                >
+                    {sweArticlesAsHTMLElements}
+                </div>
+
+                <div name="articles"
+                style=
+                {{
+                    order: 2
+                }}
+                >
+                    <ul>
+                        <li>Backend</li>
+                        <li>Frontend</li>
+                    </ul>
+                </div>  
+            </div>
             {/* {this.state.SoftwareEngineeringArticles[1]}
             {this.state.SoftwareEngineeringArticles[0]} */}
             {introText}
