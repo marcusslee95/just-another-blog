@@ -1,0 +1,23 @@
+.contentListHeaders {
+    list-style-type: none;
+    background-image: linear-gradient(225deg, #01425c,   #60cdf7);
+    padding-left: 0
+}
+
+.contentListHeaders li {
+    display: inline;
+}
+
+.contentListHeaders li:hover {
+    background-color: black;
+    color: #40A4C8;
+  }
+
+.active {
+    background-color: black;
+    color: #40A4C8;
+}
+
+
+
+

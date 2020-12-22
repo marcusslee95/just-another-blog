@@ -1,11 +1,13 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 // Random comment I inserted for get to notice a difference for the front end in order to show commit message on github
+import cssClass from './SoftwareEngineering.module.css';
 
 class SoftwareEngineering extends Component {
     state = {
-        SoftwareEngineeringArticles: []
+        SoftwareEngineeringArticles: [],
         // SoftwareEngineeringArticles: ""
+        WhichOptionIsChosen: "byTopic"
     }
 
     componentDidMount () {
@@ -68,6 +70,24 @@ class SoftwareEngineering extends Component {
             return <div key={i} dangerouslySetInnerHTML={{ __html: article}} />
         });
 
+        let listDependentOnWhichOptionIsChosen = null;
+        if (this.state.WhichOptionIsChosen === "byTopic"){
+            listDependentOnWhichOptionIsChosen = (
+            <p>
+                default to topics
+            </p>
+            );
+        }
+        else if (this.state.WhichOptionIsChosen === "byDate"){
+            listDependentOnWhichOptionIsChosen = (
+            <p>
+                Switch to Date
+            </p>
+            );
+        }
+            
+       
+
         return (
         <div
         style=
@@ -82,29 +102,61 @@ class SoftwareEngineering extends Component {
             {{
                 display: "flex",
                 flexDirection: "row",
-                justifyContent: "space-between",
+                justifyContent: "flex-start",
                 alignItems: "flex-start"
             }}
             >
                 <div name="articles"
                 style=
                 {{
-                    order: 1
+                    order: 1,
+                    width: 600,
+                    marginRight: 100
                 }}
                 >
                     {sweArticlesAsHTMLElements}
                 </div>
 
-                <div name="articles"
+                <div name="contentList"
                 style=
                 {{
                     order: 2
                 }}
                 >
-                    <ul>
-                        <li>Backend</li>
-                        <li>Frontend</li>
+                    <ul className={cssClass.contentListHeaders}
+                    >
+                        <li
+                        style=
+                        {{
+                            marginRight: 30,
+                        }}
+                        onClick={() => this.setState({WhichOptionIsChosen: "byTopic"})}
+                        className={this.state.WhichOptionIsChosen === "byTopic" ? cssClass.active : null}
+                        >By Topic</li>
+                        <li
+                        style=
+                        {{
+                            
+                        }}
+                        onClick={() => this.setState({WhichOptionIsChosen: "byDate"})}
+                        className={this.state.WhichOptionIsChosen === "byDate" ? cssClass.active : null}
+                        >By Date</li>
                     </ul>
+                    {listDependentOnWhichOptionIsChosen}
+                    {/* <ul>
+                        <li
+                        style=
+                        {{
+                            display: "inline"
+                        }}
+                        >Backend</li>
+                        <li
+                        style=
+                        {{
+                            display: "inline"
+                        }}
+                        >Frontend</li>
+                    </ul> */}
                 </div>  
             </div>
             {/* {this.state.SoftwareEngineeringArticles[1]}
