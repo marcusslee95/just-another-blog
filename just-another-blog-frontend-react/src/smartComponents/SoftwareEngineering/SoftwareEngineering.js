@@ -5,7 +5,8 @@ import cssClass from './SoftwareEngineering.module.css';
 
 class SoftwareEngineering extends Component {
     state = {
-        SoftwareEngineeringArticles: [],
+        SoftwareEngineeringArticlesByDate: {},
+        // SoftwareEngineeringArticles: [],
         // SoftwareEngineeringArticles: ""
         WhichOptionIsChosen: ""
     }
@@ -14,7 +15,7 @@ class SoftwareEngineering extends Component {
         axios.get( 'http://localhost:4000/getSoftwareEngineeringArticles' )
             .then( response => {
                 console.log( response.data );
-                this.setState({SoftwareEngineeringArticles: response.data});
+                this.setState({SoftwareEngineeringArticlesByDate: response.data});
             } )
             .catch(error => {
                 // console.log(error);
@@ -80,21 +81,29 @@ class SoftwareEngineering extends Component {
             );
         }
         else if (this.state.WhichOptionIsChosen === "byDate"){
-            const copyOfSoftwareEngineeringArticles = [...this.state.SoftwareEngineeringArticles]
-            const sweArticlesAsHTMLElements = copyOfSoftwareEngineeringArticles.map(
-                (article, i) => {
-                return <div key={i} dangerouslySetInnerHTML={{ __html: article}} />
+            //1. show all the articles by....  making them displayable in html aka. an array of divs
+            const arrOfArticles = Object.values(this.state.SoftwareEngineeringArticlesByDate);
+            console.log(arrOfArticles);
+            let sweArticlesAsHTMLElements = []
+            arrOfArticles.map(
+                (arrOfArticlesForOneYear, i) => {
+                arrOfArticlesForOneYear.map(
+                    (article, i) => {
+                        sweArticlesAsHTMLElements.push(<div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />)
+                });
             });
             textBody = sweArticlesAsHTMLElements;
 
+            //2. generate the content list 
+            const arrOfYears = Object.keys(this.state.SoftwareEngineeringArticlesByDate);
+            console.log(arrOfYears);
+            const listItems = arrOfYears.map(
+                (year, i) => {
+                return <li key={"years" + i}>{year}</li>
+            });
             listDependentOnWhichOptionIsChosen = (
-                // <p>
-                //     Switch to Date
-                // </p>
                 <ul>
-                    <li>2021</li>
-                    <li> 2020</li>
-                    <li>2019</li>
+                    {listItems}
                 </ul>
                 );
         }
