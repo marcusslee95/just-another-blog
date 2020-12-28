@@ -99,7 +99,11 @@ class SoftwareEngineering extends Component {
             console.log(arrOfYears);
             const listItems = arrOfYears.map(
                 (year, i) => {
-                return <li key={"years" + i}>{year}</li>
+                return <li key={i}
+                onClick={() => {
+                    alert("Placeholder for showing articles of year " + year);
+                }}
+                >{year}</li>
             });
             listDependentOnWhichOptionIsChosen = (
                 <ul>
