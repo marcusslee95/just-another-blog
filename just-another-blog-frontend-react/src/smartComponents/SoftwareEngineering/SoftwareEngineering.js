@@ -78,8 +78,8 @@ class SoftwareEngineering extends Component {
             });
         axios.get( 'http://localhost:4000/getSoftwareEngineeringArticlesByTopic' )
             .then( response => {
-                // console.log( response.data );
-                alert(response.data )
+                console.log( response.data );
+                // alert(response.data )
                 this.setState({SoftwareEngineeringArticlesByTopic: response.data});
             } )
             .catch(error => {
