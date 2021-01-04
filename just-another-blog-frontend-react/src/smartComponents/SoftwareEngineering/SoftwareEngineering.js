@@ -80,26 +80,39 @@ class SoftwareEngineering extends Component {
                 console.log( response.data );
                 // alert(response.data )
                 //B4: make the initial content list which shows by topic topics - only first level
-                    //2. generate the content list 
+                    //generate the content list 
                 const arrOfTopicsFirstLvl = Object.keys(response.data);
                 console.log(arrOfTopicsFirstLvl);
                 const listItems = arrOfTopicsFirstLvl.map(
                     (topic, i) => {
                     return <li key={i}
-                    // onClick={() => {
-                    //     // alert("Placeholder for showing articles of year " + year);
-                    //     const copyOfSoftwareEngineeringArticlesForThatYear = [...this.state.SoftwareEngineeringArticlesByDate[year]]
-                    //     console.log(copyOfSoftwareEngineeringArticlesForThatYear);
-                    //     const sweArticlesAsHTMLElements2 = 
-                    //     copyOfSoftwareEngineeringArticlesForThatYear.map(
-                    //         (article2, i) => {
-                    //         return <div key={i} dangerouslySetInnerHTML={{ __html: article2}} />
-                    //     });
-                    //     console.log(sweArticlesAsHTMLElements2);
-                    //     // textBody = sweArticlesAsHTMLElements2;
-                    //     this.setState({textbody: sweArticlesAsHTMLElements2});
-                    //     // console.log(textBody);
-                    // }}
+
+                    onClick={() => {
+                        //B4: show all articles related to that topic
+                        const objectRepresentingThatTopic = response.data[topic]
+                        console.log(objectRepresentingThatTopic);
+                        const arrOfSubtopics = Object.keys(objectRepresentingThatTopic)
+                        console.log(arrOfSubtopics);
+                        let sweArticlesRelatedToThisTopic = [];
+                        arrOfSubtopics.forEach(
+                            (subtopic, i) => {
+                                const arrOfArticlesForThisSubtopic = objectRepresentingThatTopic[subtopic]
+                                arrOfArticlesForThisSubtopic.forEach(
+                                    (article, i) => {
+                                        const articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString = 
+                                        <div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />
+                                    sweArticlesRelatedToThisTopic.push(articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString)     
+                                });
+                        });
+                        console.log(sweArticlesRelatedToThisTopic);
+                        this.setState({textbody: sweArticlesRelatedToThisTopic});
+                        //AFTER: show all articles related to that topic
+
+                        //B4: change content list to show subtopicss of topic you just clicked
+                        
+                        //AFTER: change content list to show subtopicss of topic you just clicked
+                    }}
+
                     >{topic}</li>
                 });
                 //AFTER: make the initial content list which shows by topic topics - only first level
