@@ -49,18 +49,17 @@ class SoftwareEngineering extends Component {
             Hope you find something you like!
             </p>
         ),
-        listDependentOnWhichOptionIsChosen: (
-            <ul>
-                <li>Backend-Development
-                    <ul>
-                        <li>APIs</li>
-                        <li>Databases</li>
-                    </ul>
-                </li>
-                <li>Frontend-Development</li>
-                <li>Finding-A-Job</li>
-            </ul>
-            ),
+        listDependentOnWhichOptionIsChosen: null,
+            // <ul>
+            //     <li>Backend-Development
+            //         <ul>
+            //             <li>APIs</li>
+            //             <li>Databases</li>
+            //         </ul>
+            //     </li>
+            //     <li>Frontend-Development</li>
+            //     <li>Finding-A-Job</li>
+            // </ul>            
         ExistsToAvoidInfiniteRerender: false,
         SoftwareEngineeringArticlesByTopic: {}
         // ClickedAListItem: false
@@ -80,7 +79,37 @@ class SoftwareEngineering extends Component {
             .then( response => {
                 console.log( response.data );
                 // alert(response.data )
-                this.setState({SoftwareEngineeringArticlesByTopic: response.data});
+                //B4: make the initial content list which shows by topic topics - only first level
+                    //2. generate the content list 
+                const arrOfTopicsFirstLvl = Object.keys(response.data);
+                console.log(arrOfTopicsFirstLvl);
+                const listItems = arrOfTopicsFirstLvl.map(
+                    (topic, i) => {
+                    return <li key={i}
+                    // onClick={() => {
+                    //     // alert("Placeholder for showing articles of year " + year);
+                    //     const copyOfSoftwareEngineeringArticlesForThatYear = [...this.state.SoftwareEngineeringArticlesByDate[year]]
+                    //     console.log(copyOfSoftwareEngineeringArticlesForThatYear);
+                    //     const sweArticlesAsHTMLElements2 = 
+                    //     copyOfSoftwareEngineeringArticlesForThatYear.map(
+                    //         (article2, i) => {
+                    //         return <div key={i} dangerouslySetInnerHTML={{ __html: article2}} />
+                    //     });
+                    //     console.log(sweArticlesAsHTMLElements2);
+                    //     // textBody = sweArticlesAsHTMLElements2;
+                    //     this.setState({textbody: sweArticlesAsHTMLElements2});
+                    //     // console.log(textBody);
+                    // }}
+                    >{topic}</li>
+                });
+                //AFTER: make the initial content list which shows by topic topics - only first level
+                this.setState({SoftwareEngineeringArticlesByTopic: response.data,
+                    listDependentOnWhichOptionIsChosen:  (
+                        <ul>
+                            {listItems}
+                        </ul>
+                        )
+                });
             } )
             .catch(error => {
                 // console.log(error);
