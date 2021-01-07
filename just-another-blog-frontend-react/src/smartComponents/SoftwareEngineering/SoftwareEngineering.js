@@ -120,7 +120,22 @@ class SoftwareEngineering extends Component {
                             (topic, ind) => {
                                 if (i === ind){//we're at the topic that we clicked 
                                 const subtopicsAsHTMLListItems = arrOfSubtopics.map((subtopic, indexxx) => {
-                                        return <li key={indexxx}>{subtopic}</li>
+                                        return <li key={indexxx}
+                                        onClick={() => {
+                                            // alert(subtopic)
+                                            //B4: show all articles related to that subtopic
+                                            const sweArticlesRelatedToThisSubtopic = [];
+                                            const arrOfArtInSubtopic = objectRepresentingThatTopic[subtopic]
+                                            arrOfArtInSubtopic.forEach(
+                                                (article, indieeeexxxxxx) => {
+                                                    const articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString = 
+                                                    <div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />
+                                                    sweArticlesRelatedToThisSubtopic.push(articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString)     
+                                            });
+                                            this.setState({textbody: sweArticlesRelatedToThisSubtopic});
+                                            //AFTER: show all articles related to that subtopic
+                                        }}
+                                            >{subtopic}</li>
                                     }
                                 )
                                     let rv = (                                       
