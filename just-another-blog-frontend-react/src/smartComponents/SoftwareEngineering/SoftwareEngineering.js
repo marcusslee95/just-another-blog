@@ -77,7 +77,7 @@ class SoftwareEngineering extends Component {
             });
         axios.get( 'http://localhost:4000/getSoftwareEngineeringArticlesByTopic' )
             .then( response => {
-                console.log( response.data );
+                // console.log( response.data );
                 // alert(response.data )
                 //B4: make the initial content list which shows by topic topics - only first level
                     //generate the content list 
@@ -90,31 +90,66 @@ class SoftwareEngineering extends Component {
                     onClick={() => {
                         //B4: show all articles related to that topic
                         const objectRepresentingThatTopic = response.data[topic]
-                        console.log(objectRepresentingThatTopic);
+                        // console.log(objectRepresentingThatTopic);
                         const arrOfSubtopics = Object.keys(objectRepresentingThatTopic)
-                        console.log(arrOfSubtopics);
+                        // console.log(arrOfSubtopics);
                         let sweArticlesRelatedToThisTopic = [];
                         arrOfSubtopics.forEach(
-                            (subtopic, i) => {
+                            (subtopic, index) => {
                                 const arrOfArticlesForThisSubtopic = objectRepresentingThatTopic[subtopic]
                                 arrOfArticlesForThisSubtopic.forEach(
-                                    (article, i) => {
+                                    (article, indieeee) => {
                                         const articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString = 
                                         <div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />
                                     sweArticlesRelatedToThisTopic.push(articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString)     
                                 });
                         });
-                        console.log(sweArticlesRelatedToThisTopic);
+                        // console.log(sweArticlesRelatedToThisTopic);
                         this.setState({textbody: sweArticlesRelatedToThisTopic});
                         //AFTER: show all articles related to that topic
 
                         //B4: change content list to show subtopicss of topic you just clicked
-                        
+                        //APPROACH:
+                        //1. for all the topics other than the one that was clicked, just use previous value
+                        //2. only for topic that was clicked instead of using previous value, create value that has subtopics too
+                            //2a. we can know which topic was the clicked topic if we loop through all the list items and compare their key to current li key
+                            //2b. now that we can identify clicked topic, when reach it in the loop create 2nd level ul that contains all the subtopics of that topic as lis
+                        // let changedContentList = [...listItems]
+                        let changedContentList = []
+                        listItems.forEach(
+                            (topic, ind) => {
+                                if (i === ind){//we're at the topic that we clicked 
+                                const subtopicsAsHTMLListItems = arrOfSubtopics.map((subtopic, indexxx) => {
+                                        return <li key={indexxx}>{subtopic}</li>
+                                    }
+                                )
+                                    let rv = (                                       
+                                            <li>{topic}
+                                            <ul>
+                                                {subtopicsAsHTMLListItems}
+                                            </ul>
+                                            </li>                                            
+                                        );
+                                    changedContentList.push(rv) 
+                                }
+                                else {
+                                    changedContentList.push(listItems[ind])    
+                                }
+                        });
+                        console.log(changedContentList);
+                        // this.setState({listDependentOnWhichOptionIsChosen: <li>gfxgg</li>});
+                        this.setState({listDependentOnWhichOptionIsChosen: (
+                            <ul>
+                                {changedContentList}
+                            </ul>
+                            )
+                        });
                         //AFTER: change content list to show subtopicss of topic you just clicked
                     }}
 
                     >{topic}</li>
                 });
+                console.log(listItems);
                 //AFTER: make the initial content list which shows by topic topics - only first level
                 this.setState({SoftwareEngineeringArticlesByTopic: response.data,
                     listDependentOnWhichOptionIsChosen:  (
