@@ -130,6 +130,7 @@ class SoftwareEngineering extends Component {
                                                 (article, indieeeexxxxxx) => {
                                                     const articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString = 
                                                     <div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />
+                                                    // sweArticlesRelatedToThisSubtopic.push(article)
                                                     sweArticlesRelatedToThisSubtopic.push(articleFormatThatReactCanRecognizeItsHTMLOtherwiseJustReadsAsNormalString)     
                                             });
                                             this.setState({textbody: sweArticlesRelatedToThisSubtopic});
