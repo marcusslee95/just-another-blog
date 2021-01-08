@@ -140,7 +140,7 @@ class SoftwareEngineering extends Component {
                                     }
                                 )
                                     let rv = (                                       
-                                            <li>{topic}
+                                            <li key={topic}>{topic}
                                             <ul>
                                                 {subtopicsAsHTMLListItems}
                                             </ul>
@@ -158,7 +158,10 @@ class SoftwareEngineering extends Component {
                             <ul>
                                 {changedContentList}
                             </ul>
-                            )
+                            ),
+                            //B4: highlight By Topic List Header
+                            WhichOptionIsChosen: "byTopic"
+                            //AFTER: highlight By Topic List Header
                         });
                         //AFTER: change content list to show subtopicss of topic you just clicked
                     }}
@@ -267,9 +270,9 @@ class SoftwareEngineering extends Component {
             const arrOfArticles = Object.values(this.state.SoftwareEngineeringArticlesByDate);
             console.log(arrOfArticles);
             let sweArticlesAsHTMLElements = []
-            arrOfArticles.map(
+            arrOfArticles.forEach(
                 (arrOfArticlesForOneYear, i) => {
-                arrOfArticlesForOneYear.map(
+                arrOfArticlesForOneYear.forEach(
                     (article, i) => {
                         sweArticlesAsHTMLElements.push(<div key={article.substring(1, 20)} dangerouslySetInnerHTML={{ __html: article}} />)
                 });
